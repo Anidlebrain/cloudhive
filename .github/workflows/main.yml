@@ -43,17 +43,16 @@ jobs:
           
       # 进入code
       - name: Change to code directory
-        run: cd code
-
-      # 查看
-      - name: code directory
-        run: dir
+        run: |
+          cd code
+          dir
       
       # msvc编译
       - name: msvc-build
         id: build
         shell: cmd
         run: |
+          cd code
           call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ${{ matrix.msvc_arch }}
           qmake
           nmake
