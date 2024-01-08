@@ -28,4 +28,6 @@ jobs:
       - name: Change to code directory
         run: pwd
       - name: Change to code directory
-        run: ls
+        run: dir
+      - name: Change to code directory
+        run: cd ../code
