@@ -25,7 +25,7 @@ jobs:
     # 步骤
     steps:
       - name: Git checkout
-        uses: actions/checkout@v3#
+        uses: actions/checkout@v3
         with:
           fetch-depth: 1
       # 进入code
