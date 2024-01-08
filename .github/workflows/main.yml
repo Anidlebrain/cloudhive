@@ -7,16 +7,19 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # 选择合适的操作系统
+    runs-on: windows-latest  # 选择合适的操作系统
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Change to code directory
+        run: cd code  
+
       - name: Set up Qt
-        uses: jurplel/setup-qt@v3  # 使用适当的Qt设置动作
+        uses: qt/qt6-setup-actions@v1
 
       - name: Build project
         run: |
           qmake -config release
-          make  # 使用适当的构建命令
+          make
