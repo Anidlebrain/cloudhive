@@ -24,10 +24,14 @@ jobs:
       targetName: HelloActions-Qt.exe
     # 步骤
     steps:
+      - name: Git checkout
+        uses: actions/checkout@v3#
+        with:
+          fetch-depth: 1
       # 进入code
       - name: Change to code directory
         run: pwd
       - name: Change to code directory
         run: dir
       - name: Change to code directory
-        run: cd ../code
+        run: cd code
