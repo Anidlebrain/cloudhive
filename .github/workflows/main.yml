@@ -24,15 +24,6 @@ jobs:
       targetName: HelloActions-Qt.exe
     # 步骤
     steps:
-      - name: Git checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 1
-          
-      # 进入code
-      - name: Change to code directory
-        run: cd code
-        
       - name: Install Qt
         # 使用外部action。这个action专门用来安装Qt
         uses: jurplel/install-qt-action@v3
@@ -44,6 +35,19 @@ jobs:
           arch: ${{ matrix.qt_arch }}
           # cached: 'false'
           # aqtversion: '==2.0.5'  
+          
+      - name: Git checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+          
+      # 进入code
+      - name: Change to code directory
+        run: cd code
+
+      # 查看
+      - name: code directory
+        run: dir
       
       # msvc编译
       - name: msvc-build
