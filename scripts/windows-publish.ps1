@@ -28,7 +28,7 @@ function Main() {
     New-Item -ItemType Directory $archiveName
     # 拷贝exe
     Copy-Item code\release\$targetName $archiveName\
-	Copy-Item dll\* $archiveName\
+	Copy-Item code\res $archiveName\
     # 拷贝依赖
     windeployqt --qmldir . --plugindir $archiveName\plugins --no-translations --compiler-runtime $archiveName\$targetName
     # 删除不必要的文件
