@@ -85,20 +85,6 @@ jobs:
         with:
           name: ${{ steps.package.outputs.packageName }}
           path: ${{ steps.package.outputs.packageName }}
-      
-      # 创建release
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: 0.1.$(date +"%Y%m%d").${{ github.run_number }}
-          release_name: v.0.1.$(date +"%Y%m%d").${{ github.run_number }}
-          body: |
-            Release Notes for version 0.1.$(date +"%Y%m%d").${{ github.run_number }}
-          draft: false
-          prerelease: false
 
       
       # tag 上传Release
@@ -109,5 +95,5 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ${{ steps.package.outputs.packageName }}.zip
           asset_name: ${{ steps.package.outputs.packageName }}.zip
-          tag: 0.1.$(date +"%Y%m%d").${{ github.run_number }}
+          tag: ${{ github.ref }}
           overwrite: true 
