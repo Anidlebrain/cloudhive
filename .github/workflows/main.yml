@@ -1,9 +1,17 @@
 name: Windows
 on: 
   # push代码时触发workflow
+    # push代码时触发workflow
   push:
-    branches:
-      - main  # 修改成你的主要分支名
+    paths:
+      - '*.pro'
+      - 'code/**'
+      - '.github/workflows/windows.yml'
+  pull_request:
+    paths:
+      - '*.pro'
+      - 'code/**'
+      - '.github/workflows/windows.yml' 
       
 jobs:
   build:
@@ -89,6 +97,7 @@ jobs:
       
       # tag 上传Release
       - name: uploadRelease
+        if: startsWith(github.event.ref, 'refs/tags/')
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
