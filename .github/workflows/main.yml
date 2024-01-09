@@ -21,7 +21,7 @@ jobs:
             msvc_arch: x64
             qt_arch_install: msvc2019_64
     env:
-      targetName: HelloActions-Qt.exe
+      targetName: cloudhive_game.exe
     # 步骤
     steps:
       - name: Install Qt
