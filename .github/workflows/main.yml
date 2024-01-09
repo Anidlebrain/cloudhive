@@ -93,12 +93,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v1.0.0  # 设置 Release 的 tag 名称
-          release_name: Release v1.0.0  # 设置 Release 的名称
+          tag_name: 0.1.$(date +"%Y%m%d").${{ github.run_number }}
+          release_name: v.0.1.$(date +"%Y%m%d").${{ github.run_number }}
           body: |
-            Release Notes for version 1.0.0  # 设置 Release 的说明
+            Release Notes for version 0.1.$(date +"%Y%m%d").${{ github.run_number }}
           draft: false
           prerelease: false
+
       
       # tag 上传Release
       - name: uploadRelease
@@ -108,5 +109,5 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ${{ steps.package.outputs.packageName }}.zip
           asset_name: ${{ steps.package.outputs.packageName }}.zip
-          tag: ${{ github.ref }}
+          tag: 0.1.$(date +"%Y%m%d").${{ github.run_number }}
           overwrite: true 
